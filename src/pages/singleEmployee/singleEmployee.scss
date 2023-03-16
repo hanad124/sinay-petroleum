@@ -1,0 +1,10 @@
+.singleEmployee {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  .singleEmployeeContainer {
+    flex: 6;
+    margin-left: 182px;
+  }
+}

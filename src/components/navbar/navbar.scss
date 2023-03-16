@@ -1,0 +1,155 @@
+.navbar {
+  height: 54.5px;
+  border-bottom: 0.5px solid rgb(231, 228, 228);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.788);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+
+  .wrapper {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .search {
+      border: 0.5px solid rgb(231, 228, 228);
+      display: flex;
+      align-items: center;
+      padding: 3px;
+      border-radius: 3px;
+
+      .icon {
+        color: rgb(176, 176, 176);
+      }
+
+      &:has(input:focus) {
+        outline: 2.5px solid #10316b9f;
+      }
+
+      input {
+        border: none;
+        padding: 0 3px;
+        font-size: 1rem;
+        background-color: transparent;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .items {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .item {
+        display: flex;
+        align-items: center;
+        margin-right: 1rem;
+        cursor: pointer;
+        position: relative;
+
+        .icon {
+          font-size: 20px;
+        }
+
+        .avatar {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          border: 1.4px solid #10316b9f;
+
+          &.active {
+            outline: 3.5px solid rgba(109, 109, 231, 0.283);
+          }
+
+          &:hover {
+            outline: 3.5px solid rgba(109, 109, 231, 0.205);
+          }
+        }
+
+        .counter {
+          width: 15px;
+          height: 15px;
+          background-color: red;
+          border-radius: 50%;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          font-weight: bold;
+          position: absolute;
+          top: -5px;
+          right: -5px;
+        }
+
+        .account_popup {
+          position: absolute;
+          top: 2.8rem;
+          right: -1.7rem;
+          background-color: #fff;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          border-radius: 0.3rem;
+          cursor: pointer;
+          display: none;
+
+          &.show {
+            display: block;
+          }
+
+          .userAccount {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+
+            padding-bottom: 0.5rem;
+            border-bottom: 0.05rem solid rgba(177, 171, 171, 0.613);
+            cursor: pointer;
+
+            &:hover {
+              background-color: rgba(237, 237, 237, 0.571);
+            }
+          }
+
+          .logout {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            padding-top: 0.5rem;
+            cursor: pointer;
+
+            &:hover {
+              background-color: rgba(237, 237, 237, 0.571);
+            }
+          }
+        }
+      }
+
+      .account {
+        margin-right: 2rem;
+        max-width: 160px;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+
+        .roll {
+          font-weight: 800;
+          color: #10316bad;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.customer {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  .customerContainer {
+    flex: 6;
+    margin-left: 182px;
+  }
+}

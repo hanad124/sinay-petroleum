@@ -1,0 +1,10 @@
+.supplier {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  .supplierContainer {
+    flex: 6;
+    margin-left: 182px;
+  }
+}

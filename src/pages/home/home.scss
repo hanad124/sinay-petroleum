@@ -1,0 +1,35 @@
+.home {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  .homeContainer {
+    flex: 6;
+    margin-left: 182px;
+
+    .widgets {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .charts {
+      padding: 5px 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .listContainer {
+      box-shadow: rgba(100, 100, 111, 0.15) 1px 2px 19px 0px;
+      padding: 20px;
+      margin: 20px;
+
+      .listTitle {
+        font-weight: 500;
+        color: gray;
+        font-size: 15px;
+      }
+    }
+  }
+}

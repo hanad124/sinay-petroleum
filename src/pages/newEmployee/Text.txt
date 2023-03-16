@@ -1,0 +1,32 @@
+
+========== PASSWORD SHOW CODE =========
+
+<p className="password">Password</p>
+<div className="pswd-wrapper">
+<input type={showPassword ? "text" : "password"} />
+{showPassword ? (
+    <RemoveRedEyeOutlinedIcon
+    className="eye"
+    style={{
+        cursor: "pointer",
+        color: "gray",
+        marginRight: ".5rem",
+    }}
+    onClick={() => {
+        HidePassword();
+    }}
+    />
+) : (
+    <VisibilityOffOutlinedIcon
+    className="eye"
+    style={{
+        cursor: "pointer",
+        color: "gray",
+        marginRight: ".5rem",
+    }}
+    onClick={() => {
+        HidePassword();
+    }}
+    />
+)}
+</div>
