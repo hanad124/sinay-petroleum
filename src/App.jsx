@@ -16,6 +16,8 @@ import EditEmployee from "./pages/editEmployee/EditEmployee";
 import SingleUser from "./pages/singleUser/SingleUser";
 import NewSupplier from "./pages/newSupplier/NewSupplier";
 import EditSupplier from "./pages/editSupplier/EditSupplier";
+import NewFuel from "./pages/newFuel/NewFuel";
+
 import EditUserContext from "./context/EditUserContext";
 import EditEmployeeContext from "./context/EditEmployeeContext";
 import SupplierContext from "./context/SupplierContext";
@@ -113,6 +115,14 @@ const App = () => {
                     element={
                       <RequireAuth>
                         <Fuel />
+                      </RequireAuth>
+                    }
+                  />
+                  <Route
+                    path="/fuel/new-fuel"
+                    element={
+                      <RequireAuth>
+                        <NewFuel />
                       </RequireAuth>
                     }
                   />
