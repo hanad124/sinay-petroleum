@@ -2,7 +2,7 @@ import "./fuel.scss";
 
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import SupplierContext from "../../context/SupplierContext";
+import FuelContext from "../../context/FuelContext";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -54,7 +54,7 @@ const userColumns = [
 const Fuel = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  // const { supplierId, SetSupplierId } = useContext(SupplierContext);
+  const { fuelId, SetFuelId } = useContext(FuelContext);
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -82,7 +82,7 @@ const Fuel = () => {
 
   const editUserBtn = (id) => {
     localStorage.setItem("fuelID", JSON.stringify(id));
-    // SetSupplierId(id);
+    SetFuelId(id);
   };
 
   const handleDelete = async (id) => {
