@@ -96,7 +96,7 @@
           }
 
           span {
-            margin-left: .9rem;
+            margin-left: 0.9rem;
             font-weight: 400;
           }
         }
@@ -110,11 +110,18 @@
           }
 
           span {
-            margin-left: .9rem;
+            margin-left: 0.9rem;
             font-weight: 400;
           }
         }
       }
     }
   }
+}
+
+// preloader
+.preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }

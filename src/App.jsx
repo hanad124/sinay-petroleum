@@ -24,6 +24,7 @@ import EditUserContext from "./context/EditUserContext";
 import EditEmployeeContext from "./context/EditEmployeeContext";
 import SupplierContext from "./context/SupplierContext";
 import FuelContext from "./context/FuelContext";
+import PurchaseContext from "./context/PurchaseContext";
 import { AuthContext } from "./context/AuthContext";
 
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
@@ -34,6 +35,7 @@ const App = () => {
   const [employeeId, SetEmployeeId] = useState([]);
   const [supplierId, SetSupplierId] = useState([]);
   const [fuelId, SetFuelId] = useState([]);
+  const [purchaseId, SetPurchaseId] = useState([]);
 
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/login" />;
@@ -46,165 +48,167 @@ const App = () => {
           <EditEmployeeContext.Provider value={{ employeeId, SetEmployeeId }}>
             <SupplierContext.Provider value={{ supplierId, SetSupplierId }}>
               <FuelContext.Provider value={{ fuelId, SetFuelId }}>
-                <Routes>
-                  <Route path="/">
-                    <Route path="login" element={<Login />} />
-                    <Route
-                      index
-                      element={
-                        <RequireAuth>
-                          <Home />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route path="/employees">
+                <PurchaseContext.Provider value={{ purchaseId, SetPurchaseId }}>
+                  <Routes>
+                    <Route path="/">
+                      <Route path="login" element={<Login />} />
                       <Route
                         index
                         element={
                           <RequireAuth>
-                            <Employee />
+                            <Home />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route path="/employees">
+                        <Route
+                          index
+                          element={
+                            <RequireAuth>
+                              <Employee />
+                            </RequireAuth>
+                          }
+                        />
+                      </Route>
+                      <Route
+                        path="/employees/single-employee"
+                        element={
+                          <RequireAuth>
+                            <SinglEmployee />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/employees/new-employee"
+                        element={
+                          <RequireAuth>
+                            <NewEmployee />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/employees/edit-employee"
+                        element={
+                          <RequireAuth>
+                            <EditEmployee />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/supplier"
+                        element={
+                          <RequireAuth>
+                            <Supplier />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/supplier/new-supplier"
+                        element={
+                          <RequireAuth>
+                            <NewSupplier />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/supplier/edit-supplier"
+                        element={
+                          <RequireAuth>
+                            <EditSupplier />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/fuel"
+                        element={
+                          <RequireAuth>
+                            <Fuel />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/fuel/new-fuel"
+                        element={
+                          <RequireAuth>
+                            <NewFuel />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/fuel/edit-fuel"
+                        element={
+                          <RequireAuth>
+                            <EditFuel />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/purchase"
+                        element={
+                          <RequireAuth>
+                            <Purchase />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/purchase/new-purchase"
+                        element={
+                          <RequireAuth>
+                            <NewPurchase />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/customer"
+                        element={
+                          <RequireAuth>
+                            <Customer />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/sales"
+                        element={
+                          <RequireAuth>
+                            <Sales />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/users"
+                        element={
+                          <RequireAuth>
+                            <Users />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/users/new-user"
+                        element={
+                          <RequireAuth>
+                            <NewUser />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/users/edit-user"
+                        element={
+                          <RequireAuth>
+                            <EditUser />
+                          </RequireAuth>
+                        }
+                      />
+                      <Route
+                        path="/users/single-user"
+                        element={
+                          <RequireAuth>
+                            <SingleUser />
                           </RequireAuth>
                         }
                       />
                     </Route>
-                    <Route
-                      path="/employees/single-employee"
-                      element={
-                        <RequireAuth>
-                          <SinglEmployee />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/employees/new-employee"
-                      element={
-                        <RequireAuth>
-                          <NewEmployee />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/employees/edit-employee"
-                      element={
-                        <RequireAuth>
-                          <EditEmployee />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/supplier"
-                      element={
-                        <RequireAuth>
-                          <Supplier />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/supplier/new-supplier"
-                      element={
-                        <RequireAuth>
-                          <NewSupplier />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/supplier/edit-supplier"
-                      element={
-                        <RequireAuth>
-                          <EditSupplier />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/fuel"
-                      element={
-                        <RequireAuth>
-                          <Fuel />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/fuel/new-fuel"
-                      element={
-                        <RequireAuth>
-                          <NewFuel />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/fuel/edit-fuel"
-                      element={
-                        <RequireAuth>
-                          <EditFuel />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/purchase"
-                      element={
-                        <RequireAuth>
-                          <Purchase />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/purchase/new-purchase"
-                      element={
-                        <RequireAuth>
-                          <NewPurchase />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/customer"
-                      element={
-                        <RequireAuth>
-                          <Customer />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/sales"
-                      element={
-                        <RequireAuth>
-                          <Sales />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/users"
-                      element={
-                        <RequireAuth>
-                          <Users />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/users/new-user"
-                      element={
-                        <RequireAuth>
-                          <NewUser />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/users/edit-user"
-                      element={
-                        <RequireAuth>
-                          <EditUser />
-                        </RequireAuth>
-                      }
-                    />
-                    <Route
-                      path="/users/single-user"
-                      element={
-                        <RequireAuth>
-                          <SingleUser />
-                        </RequireAuth>
-                      }
-                    />
-                  </Route>
-                </Routes>
+                  </Routes>
+                </PurchaseContext.Provider>
               </FuelContext.Provider>
             </SupplierContext.Provider>
           </EditEmployeeContext.Provider>

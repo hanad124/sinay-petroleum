@@ -4,7 +4,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
   const [clicked, setClicked] = useState(false);
@@ -29,7 +29,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    navigate("login");
+    // navigate("login");
     localStorage.removeItem("user");
   };
 
@@ -57,10 +57,12 @@ const Navbar = () => {
                 <AccountCircleOutlinedIcon className=" icon sitting-icon" />
                 <p>Account</p>
               </div>
-              <div className="logout" onClick={handleLogout}>
-                <LogoutOutlinedIcon className="icon logout-icon" />
-                <p>Logout</p>
-              </div>
+              <Link to="/login">
+                <div className="logout" onClick={handleLogout}>
+                  <LogoutOutlinedIcon className="icon logout-icon" />
+                  <p>Logout</p>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

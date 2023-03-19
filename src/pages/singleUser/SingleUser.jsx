@@ -1,5 +1,6 @@
 import "./singleUser.scss";
 import sampleImg from "../../assets/sample-img.jpg";
+import peroloader from "../../assets/preloader.gif";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState, useContext } from "react";
@@ -18,11 +19,13 @@ const NewUser = () => {
   const [password, setpassword] = useState("");
   const [roll, setRoll] = useState("");
   const [jionDate, setJionDate] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const userId = JSON.parse(localStorage.getItem("userID"));
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const docRef = doc(db, "users", userId);
       const docSnap = await getDoc(docRef);
       // console.log(docSnap.data());
@@ -45,6 +48,8 @@ const NewUser = () => {
       setPhone(userPhone);
       setEmail(userEmail);
       setId(userID);
+
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -52,6 +57,11 @@ const NewUser = () => {
     navigate(-1);
   };
 
+  if (loading) {
+    return (
+      <img src={peroloader} alt="preloader" className="preloader" />
+    );
+  }
   return (
     <div className="newUser">
       <Sidebar />

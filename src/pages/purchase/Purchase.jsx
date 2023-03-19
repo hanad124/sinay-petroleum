@@ -1,7 +1,7 @@
 import "./purchase.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import FuelContext from "../../context/FuelContext";
+import PurchaseContext from "../../context/PurchaseContext";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -21,20 +21,50 @@ import { db } from "../../firebase";
 const userColumns = [
   // { field: "id", headerName: "ID", width: 70 },
   {
-    field: "fuelType",
-    headerName: "Fuel Type",
-    width: 230,
+    field: "suppName",
+    headerName: "Name",
+    width: 170,
   },
 
   {
-    field: "tankNumber",
-    headerName: "Tank Number",
+    field: "suppPhone",
+    headerName: "Phone",
+    width: 100,
+  },
+  {
+    field: "suppEmail",
+    headerName: "Email",
     width: 150,
   },
   {
-    field: "capacity",
-    headerName: "Capacity",
-    width: 190,
+    field: "fuelType",
+    headerName: "Fuel",
+    width: 70,
+  },
+  {
+    field: "fuelTank",
+    headerName: "Tank No.",
+    width: 70,
+  },
+  {
+    field: "litter",
+    headerName: "Litters",
+    width: 60,
+  },
+  {
+    field: "pricePerLitter",
+    headerName: "Price/Litter",
+    width: 90,
+  },
+  {
+    field: "totalPrice",
+    headerName: "Total",
+    width: 80,
+  },
+  {
+    field: "perchaseDate",
+    headerName: "Date",
+    width:120,
   },
   // {
   //   field: "status",
@@ -53,11 +83,11 @@ const userColumns = [
 const Purchase = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const { fuelId, SetFuelId } = useContext(FuelContext);
+  const { purchaseId, SetPurchaseId } = useContext(PurchaseContext);
 
   useEffect(() => {
     const unsub = onSnapshot(
-      collection(db, "fuel"),
+      collection(db, "purchase"),
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
@@ -76,17 +106,17 @@ const Purchase = () => {
   }, []);
 
   const clickUser = (id) => {
-    localStorage.setItem("fuelID", JSON.stringify(id));
+    localStorage.setItem("purchaseID", JSON.stringify(id));
   };
 
   const editUserBtn = (id) => {
-    localStorage.setItem("fuelID", JSON.stringify(id));
-    SetFuelId(id);
+    localStorage.setItem("purchaseID", JSON.stringify(id));
+    SetPurchaseId(id);
   };
 
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, "fuel", id));
+      await deleteDoc(doc(db, "purchase", id));
       setData(data.filter((item) => item.id !== id));
     } catch (error) {
       console.log(error);
@@ -97,15 +127,15 @@ const Purchase = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 180,
+      width: 130,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="" style={{ textDecoration: "none" }}>
+            {/* <Link to="" style={{ textDecoration: "none" }}>
               <div className="viewButton" onClick={() => ""}>
                 View
               </div>
-            </Link>
+            </Link> */}
             <Link to="/fuel/edit-fuel">
               <div
                 className="editButton"
