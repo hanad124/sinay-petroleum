@@ -64,7 +64,7 @@ const userColumns = [
   {
     field: "perchaseDate",
     headerName: "Date",
-    width:120,
+    width: 120,
   },
   // {
   //   field: "status",
@@ -136,7 +136,7 @@ const Purchase = () => {
                 View
               </div>
             </Link> */}
-            <Link to="/fuel/edit-fuel">
+            <Link to="/purchase/edit-purchase">
               <div
                 className="editButton"
                 onClick={() => editUserBtn(params.row.id)}

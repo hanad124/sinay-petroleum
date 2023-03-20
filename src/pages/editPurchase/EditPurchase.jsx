@@ -1,7 +1,8 @@
-import "./newPurchase.scss";
+import "./editPurchase.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { useState, useEffect } from "react";
+import PurchaseContext from "../../context/PurchaseContext";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   addDoc,
@@ -14,8 +15,9 @@ import {
 import { db, storage } from "../../firebase";
 import { async } from "@firebase/util";
 
-const NewPurchase = () => {
+const EditPurchase = () => {
   const navigate = useNavigate();
+  const { purchaseId, SetPurchaseId } = useContext(PurchaseContext);
   const [fuelData, setFuelData] = useState([]);
   const [data, setData] = useState([]);
   const [suppName, setSuppName] = useState("");
@@ -32,6 +34,8 @@ const NewPurchase = () => {
 
   const suppData = [];
   const fulTempData = [];
+
+  const exectPurchID = JSON.parse(localStorage.getItem("purchaseID"));
 
   //CHECK FUEL PRICE
   useEffect(() => {
@@ -144,37 +148,65 @@ const NewPurchase = () => {
     fetchData();
   }, [fuelID]);
 
-  const handleAdd = async () => {
-    await addDoc(collection(db, "purchase"), {
-      suppName: suppName,
-      suppPhone: suppPhone,
-      suppEmail: suppEmail,
-      fuelTank: fuelTank,
-      fuelType: fuelType,
-      litter: litter,
-      pricePerLitter: pricePerLitter,
-      totalPrice: totalPrice,
-      perchaseDate: perchaseDate,
-      time: dayDate + "/" + months[monthDate] + "/" + yearDate,
-    });
+  //GET PURCHASE DATA
+  useEffect(() => {
+    const fetchData = async () => {
+      const docRef = doc(db, "purchase", exectPurchID);
+      const docSnap = await getDoc(docRef);
+
+      console.log(docSnap.data());
+
+      setSuppName(docSnap.data().suppName);
+      setSuppPhone(docSnap.data().suppPhone);
+      setSuppEmail(docSnap.data().suppEmail);
+      setFuelType(docSnap.data().fuelType);
+      setFuelTank(docSnap.data().fuelTank);
+      setLitter(docSnap.data().litter);
+      setPricePerLitter(docSnap.data().pricePerLitter);
+      setTotalPrice(docSnap.data().totalPrice);
+      setPerchaseDate(docSnap.data().perchaseDate);
+    };
+    fetchData();
+  }, []);
+
+  const handleUpdate = async () => {
+    try {
+      await setDoc(doc(db, "purchase", exectPurchID), {
+        suppName: suppName,
+        suppPhone: suppPhone,
+        suppEmail: suppEmail,
+        fuelTank: fuelTank,
+        fuelType: fuelType,
+        litter: litter,
+        pricePerLitter: pricePerLitter,
+        totalPrice: totalPrice,
+        perchaseDate: perchaseDate,
+      });
+      alert("data has updated sucessfully!");
+      navigate(-1);
+    } catch (error) {
+      console.log(error);
+      alert("something wrong!");
+    }
 
     alert("data has added sucessfully!");
     navigate(-1);
   };
 
   return (
-    <div className="newPurchase">
+    <div className="editPurchase">
       <Sidebar />
-      <div className="newPurchaseContainer">
+      <div className="editPurchaseContainer">
         <Navbar />
         <div className="wrapper">
-          <div className="title">Add New Purchase</div>
+          <div className="title">Update Purchase</div>
           <div className="wrapper-cols">
             <div className="wrapper-cols-2">
               <p className="fullName">Supplier Name</p>
               <select
                 name="supp-name"
                 className="supp_name"
+                value={suppName}
                 onChange={(e) => {
                   suppData.filter((el) => {
                     if (el.id == e.target.value) {
@@ -205,12 +237,12 @@ const NewPurchase = () => {
               <select
                 name="fuel-tank"
                 className="fuel_tank"
-                // value={fuelType}
+                value={fuelType}
                 onChange={(e) => {
                   fuelData.filter((el) => {
                     if (el.id == e.target.value) {
-                      setFuelID(el.id);
                       setFuelType(el.fuelType);
+                      setFuelID(el.id);
                     }
                   });
                 }}
@@ -251,12 +283,12 @@ const NewPurchase = () => {
               <input
                 type="date"
                 className="purch_date"
-                // value=""
+                value={perchaseDate}
                 onChange={(e) => setPerchaseDate(e.target.value)}
               />
             </div>
           </div>
-          <button className="btn-save" onClick={handleAdd}>
+          <button className="btn-save" onClick={handleUpdate}>
             Save
           </button>
         </div>
@@ -265,4 +297,4 @@ const NewPurchase = () => {
   );
 };
 
-export default NewPurchase;
+export default EditPurchase;
