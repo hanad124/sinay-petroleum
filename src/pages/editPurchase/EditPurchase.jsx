@@ -16,8 +16,8 @@ import { db, storage } from "../../firebase";
 import { async } from "@firebase/util";
 
 const EditPurchase = () => {
-  const navigate = useNavigate();
   const { purchaseId, SetPurchaseId } = useContext(PurchaseContext);
+  const navigate = useNavigate();
   const [fuelData, setFuelData] = useState([]);
   const [data, setData] = useState([]);
   const [suppName, setSuppName] = useState("");
@@ -104,7 +104,6 @@ const EditPurchase = () => {
     const fetchData = async () => {
       const docRef = doc(db, "suppliers", suppID);
       const docSnap = await getDoc(docRef);
-      console.log(docSnap.data());
 
       const supphone = docSnap.data().phone;
       const supemail = docSnap.data().email;
@@ -151,12 +150,13 @@ const EditPurchase = () => {
   //GET PURCHASE DATA
   useEffect(() => {
     const fetchData = async () => {
+      console.log(exectPurchID ? "ID: " + exectPurchID : "BAD");
       const docRef = doc(db, "purchase", exectPurchID);
       const docSnap = await getDoc(docRef);
 
-      console.log(docSnap.data());
+      const testSupNam = docSnap.data().suppName;
 
-      setSuppName(docSnap.data().suppName);
+      exectPurchID ? setSuppName(testSupNam) : setSuppName("BAD");
       setSuppPhone(docSnap.data().suppPhone);
       setSuppEmail(docSnap.data().suppEmail);
       setFuelType(docSnap.data().fuelType);
@@ -205,6 +205,8 @@ const EditPurchase = () => {
                 className="supp_name"
                 value={suppName}
                 onChange={(e) => {
+                  // setSuppName(e.target.value);
+                  // console.log(suppName);
                   suppData.filter((el) => {
                     if (el.id == e.target.value) {
                       setSuppID(el.id);
@@ -236,7 +238,7 @@ const EditPurchase = () => {
               <select
                 name="fuel-tank"
                 className="fuel_tank"
-                // value={fuelType}
+                value={fuelType}
                 onChange={(e) => {
                   fuelData.filter((el) => {
                     if (el.id == e.target.value) {

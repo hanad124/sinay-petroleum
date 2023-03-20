@@ -251,9 +251,28 @@ const NewPurchase = () => {
               <input
                 type="date"
                 className="purch_date"
-                // value=""
                 onChange={(e) => setPerchaseDate(e.target.value)}
               />
+              <div className="status-wrapper">
+                <div className="group1">
+                  <input
+                    type="radio"
+                    id="pending"
+                    name="status"
+                    value="Pending"
+                  />
+                  <label for="pending">Pending</label>
+                </div>
+                <div className="group2">
+                  <input
+                    type="radio"
+                    id="approved"
+                    name="status"
+                    value="Approved"
+                  />
+                   <label for="approved">Approved</label>
+                </div>
+              </div>
             </div>
           </div>
           <button className="btn-save" onClick={handleAdd}>

@@ -66,7 +66,7 @@ const userColumns = [
     headerName: "Date",
     width: 120,
   },
-    {
+  {
     field: "status",
     headerName: "Status",
     width: 160,
@@ -78,7 +78,6 @@ const userColumns = [
       );
     },
   },
-
 ];
 
 const Purchase = () => {
@@ -168,8 +167,6 @@ const Purchase = () => {
               className="link"
               onClick={() => {
                 navigate("/purchase/new-purchase");
-                // localStorage.removeItem("userID");
-                // setEditUser("");
               }}
             >
               Add New

@@ -2,7 +2,6 @@
   display: flex;
   width: 100%;
   height: 100vh;
-  // overflow: hidden;
   position: relative;
 
   .newPurchaseContainer {
@@ -11,13 +10,11 @@
 
     .wrapper {
       position: relative;
-      // height: 600px;
       padding: 20px;
       z-index: 21;
 
       &-cols {
         display: flex;
-        // align-items: center;
         margin-top: 2rem;
         gap: 5rem;
 
@@ -26,6 +23,33 @@
         &-4 {
           .purch_date {
             margin-top: 1.7rem;
+          }
+
+          .status-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2.6rem;
+
+            .group1,
+            .group2 {
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+
+              input {
+                width: 1.5rem;
+                accent-color: rgba(109, 109, 231, 0.638);
+
+                &:hover {
+                  accent-color: rgba(109, 109, 231, 0.116);
+                }
+
+                &:focus {
+                  outline: none;
+                }
+              }
+            }
           }
 
           input,

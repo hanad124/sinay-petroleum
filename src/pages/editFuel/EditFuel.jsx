@@ -16,7 +16,7 @@ import {
 import { db, storage } from "../../firebase";
 
 const EditFuel = () => {
-    const { fuelId, SetFuelId } = useContext(FuelContext);
+  const { fuelId, SetFuelId } = useContext(FuelContext);
   const navigate = useNavigate();
   const [tankNumber, setTankNumber] = useState("1");
   const [capacity, setCapacity] = useState("300");
@@ -52,6 +52,8 @@ const EditFuel = () => {
     };
     fetchData();
   }, []);
+
+  console.log(fuelType);
 
   const handleUpdate = async () => {
     try {
