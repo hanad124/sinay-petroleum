@@ -31,11 +31,11 @@ const userColumns = [
     headerName: "Phone",
     width: 100,
   },
-  {
-    field: "suppEmail",
-    headerName: "Email",
-    width: 150,
-  },
+  // {
+  //   field: "suppEmail",
+  //   headerName: "Email",
+  //   width: 150,
+  // },
   {
     field: "fuelType",
     headerName: "Fuel",
@@ -66,18 +66,19 @@ const userColumns = [
     headerName: "Date",
     width: 120,
   },
-  // {
-  //   field: "status",
-  //   headerName: "Status",
-  //   width: 160,
-  //   renderCell: (params) => {
-  //     return (
-  //       <div className={`cellWithStatus ${params.row.status}`}>
-  //         {params.row.status}
-  //       </div>
-  //     );
-  //   },
-  // },
+    {
+    field: "status",
+    headerName: "Status",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.status}`}>
+          {params.row.status}
+        </div>
+      );
+    },
+  },
+
 ];
 
 const Purchase = () => {
