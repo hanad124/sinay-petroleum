@@ -188,9 +188,6 @@ const EditPurchase = () => {
       console.log(error);
       alert("something wrong!");
     }
-
-    alert("data has added sucessfully!");
-    navigate(-1);
   };
 
   return (
@@ -224,12 +221,14 @@ const EditPurchase = () => {
               <p className="phone">Supplier Phone</p>
               <input
                 type="text"
+                disabled
                 value={suppPhone}
                 onChange={(e) => setSuppPhone(e.target.value)}
               />
               <p className="phone">Supplier Email</p>
               <input
                 type="text"
+                disabled
                 value={suppEmail}
                 onChange={(e) => setSuppEmail(e.target.value)}
               />
@@ -237,7 +236,7 @@ const EditPurchase = () => {
               <select
                 name="fuel-tank"
                 className="fuel_tank"
-                value={fuelType}
+                // value={fuelType}
                 onChange={(e) => {
                   fuelData.filter((el) => {
                     if (el.id == e.target.value) {
@@ -257,6 +256,7 @@ const EditPurchase = () => {
               <p className="address">Fuel Tunk</p>
               <input
                 type="text"
+                disabled
                 value={fuelTank}
                 onChange={(e) => setFuelTank(e.target.value)}
               />
@@ -269,12 +269,14 @@ const EditPurchase = () => {
               <p className="address">Price per litter</p>
               <input
                 type="text"
+                disabled
                 value={pricePerLitter}
                 onChange={(e) => setPricePerLitter(e.target.value)}
               />
               <p className="address">Total price</p>
               <input
                 type="text"
+                disabled
                 value={totalPrice}
                 onChange={(e) => setTotalPrice(e.target.value)}
               />
