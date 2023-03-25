@@ -32,7 +32,6 @@ const Sidebar = () => {
 
   const sideBarClick = () => {
     setClicked(true);
-    console.log(clicked);
   };
 
   return (
@@ -100,11 +99,13 @@ const Sidebar = () => {
           <div className="main-rep ">
             <span>Reports</span>
           </div>
-          {showReports ? (
+          <KeyboardArrowDownOutlinedIcon
+            className={`"icon arrow " ${showReports ? "rotate" : ""}`}
+          />
+          {/* {showReports ? (
             <KeyboardArrowDownOutlinedIcon className="icon arrow" />
-          ) : (
-            <KeyboardArrowUpOutlinedIcon className="icon arrow" />
-          )}
+          ) : ( */}
+          {/* )} */}
         </li>
         <li className={`sub_rep ${showReports ? "show-sub_rep" : ""}`}>
           <SummarizeOutlinedIcon className="icon" />

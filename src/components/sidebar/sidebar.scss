@@ -81,6 +81,11 @@
       .arrow {
         position: absolute;
         right: 1rem;
+        transition: transform 0.4s ease-in;
+
+        &.rotate {
+          transform: rotate(180deg);
+        }
       }
     }
 
