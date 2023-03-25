@@ -31,9 +31,11 @@ const EditPurchase = () => {
   const [pricePerLitter, setPricePerLitter] = useState("");
   const [totalPrice, setTotalPrice] = useState("");
   const [perchaseDate, setPerchaseDate] = useState("");
+  const [status, setStatus] = useState(false);
 
   const suppData = [];
   const fulTempData = [];
+  console.log(status);
 
   const exectPurchID = JSON.parse(localStorage.getItem("purchaseID"));
 
@@ -165,6 +167,7 @@ const EditPurchase = () => {
       setPricePerLitter(docSnap.data().pricePerLitter);
       setTotalPrice(docSnap.data().totalPrice);
       setPerchaseDate(docSnap.data().perchaseDate);
+      setStatus(docSnap.data().status);
     };
     fetchData();
   }, []);
@@ -180,6 +183,7 @@ const EditPurchase = () => {
         litter: litter,
         pricePerLitter: pricePerLitter,
         totalPrice: totalPrice,
+        status: status,
         perchaseDate: perchaseDate,
       });
       alert("data has updated sucessfully!");
@@ -290,6 +294,28 @@ const EditPurchase = () => {
                 value={perchaseDate}
                 onChange={(e) => setPerchaseDate(e.target.value)}
               />
+              <div className="status-wrapper">
+                <div className="group1">
+                  <input
+                    type="radio"
+                    id="pending"
+                    name="status"
+                    checked={!status ? "checked" : false}
+                    onChange={(e) => setStatus(e.target.value)}
+                  />
+                  <label for="pending">Pending</label>
+                </div>
+                <div className="group2">
+                  <input
+                    type="radio"
+                    id="approved"
+                    name="status"
+                    // checked={status ? "checked" : false}
+                    onChange={(e) => setStatus(e.target.value)}
+                  />
+                   <label for="approved">Approved</label>
+                </div>
+              </div>
             </div>
           </div>
           <button className="btn-save" onClick={handleUpdate}>

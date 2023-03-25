@@ -28,6 +28,33 @@
             margin-top: 1.7rem;
           }
 
+          .status-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2.6rem;
+
+            .group1,
+            .group2 {
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+
+              input {
+                width: 1.5rem;
+                accent-color: rgba(109, 109, 231, 0.638);
+
+                &:hover {
+                  accent-color: rgba(109, 109, 231, 0.116);
+                }
+
+                &:focus {
+                  outline: none;
+                }
+              }
+            }
+          }
+
           input,
           .purch_date,
           .supp_name,

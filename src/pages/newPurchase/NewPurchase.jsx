@@ -29,6 +29,7 @@ const NewPurchase = () => {
   const [pricePerLitter, setPricePerLitter] = useState("");
   const [totalPrice, setTotalPrice] = useState("");
   const [perchaseDate, setPerchaseDate] = useState("");
+  const [status, setStatus] = useState("Pending");
 
   const suppData = [];
   const fulTempData = [];
@@ -155,6 +156,7 @@ const NewPurchase = () => {
       pricePerLitter: pricePerLitter,
       totalPrice: totalPrice,
       perchaseDate: perchaseDate,
+      status: status,
       time: dayDate + "/" + months[monthDate] + "/" + yearDate,
     });
 
@@ -192,12 +194,14 @@ const NewPurchase = () => {
               <p className="phone">Supplier Phone</p>
               <input
                 type="text"
+                disabled
                 value={suppPhone}
                 onChange={(e) => setSuppPhone(e.target.value)}
               />
               <p className="phone">Supplier Email</p>
               <input
                 type="text"
+                disabled
                 value={suppEmail}
                 onChange={(e) => setSuppEmail(e.target.value)}
               />
@@ -225,6 +229,7 @@ const NewPurchase = () => {
               <p className="address">Fuel Tunk</p>
               <input
                 type="text"
+                disabled
                 value={fuelTank}
                 onChange={(e) => setFuelTank(e.target.value)}
               />
@@ -237,12 +242,14 @@ const NewPurchase = () => {
               <p className="address">Price per litter</p>
               <input
                 type="text"
+                disabled
                 value={pricePerLitter}
                 onChange={(e) => setPricePerLitter(e.target.value)}
               />
               <p className="address">Total price</p>
               <input
                 type="text"
+                disabled
                 value={totalPrice}
                 onChange={(e) => setTotalPrice(e.target.value)}
               />
@@ -259,6 +266,9 @@ const NewPurchase = () => {
                     type="radio"
                     id="pending"
                     name="status"
+                    onClick={() => {
+                      setStatus("Pending");
+                    }}
                     value="Pending"
                   />
                   <label for="pending">Pending</label>
@@ -269,6 +279,9 @@ const NewPurchase = () => {
                     id="approved"
                     name="status"
                     value="Approved"
+                    onClick={() => {
+                      setStatus("Approved");
+                    }}
                   />
                    <label for="approved">Approved</label>
                 </div>
