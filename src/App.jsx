@@ -26,6 +26,7 @@ import EditEmployeeContext from "./context/EditEmployeeContext";
 import SupplierContext from "./context/SupplierContext";
 import FuelContext from "./context/FuelContext";
 import PurchaseContext from "./context/PurchaseContext";
+import CustomerContext from "./context/CustomerContext";
 import { AuthContext } from "./context/AuthContext";
 
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
@@ -35,6 +36,7 @@ const App = () => {
   const [editUser, setEditUser] = useState([]);
   const [employeeId, SetEmployeeId] = useState([]);
   const [supplierId, SetSupplierId] = useState([]);
+  const [customerId, SetCustomerId] = useState([]);
   const [fuelId, SetFuelId] = useState([]);
   const [purchaseId, SetPurchaseId] = useState([]);
 
