@@ -20,6 +20,7 @@ import NewFuel from "./pages/newFuel/NewFuel";
 import EditFuel from "./pages/editFuel/EditFuel";
 import NewPurchase from "./pages/newPurchase/NewPurchase";
 import NewCustomer from "./pages/newCustomer/NewCustomer";
+import NewSales from "./pages/newSales/NewSales"
 import EditPurchase from "./pages/editPurchase/EditPurchase";
 import EditCustomer from "./pages/editCustomer/EditCustomer";
 
@@ -203,6 +204,14 @@ const App = () => {
                           element={
                             <RequireAuth>
                               <Sales />
+                            </RequireAuth>
+                          }
+                        />
+                        <Route
+                          path="/sales/new-sales"
+                          element={
+                            <RequireAuth>
+                              <NewSales />
                             </RequireAuth>
                           }
                         />
