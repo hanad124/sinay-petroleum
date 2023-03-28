@@ -115,7 +115,7 @@ const Customer = () => {
                 View
               </div>
             </Link>
-            <Link to="/supplier/edit-supplier">
+            <Link to="/customers/edit-customer">
               <div
                 className="editButton"
                 onClick={() => editUserBtn(params.row.id)}
@@ -148,7 +148,6 @@ const Customer = () => {
               onClick={() => {
                 navigate("/customer/new-customer");
                 // localStorage.removeItem("userID");
-                setEditUser("");
               }}
             >
               Add New

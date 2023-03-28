@@ -80,7 +80,7 @@ const NewCustomer = () => {
   }, [file]);
 
   const handleAdd = async () => {
-    await addDoc(collection(db, "suppliers"), {
+    await addDoc(collection(db, "customers"), {
       fullName: fullName,
       phone: phone,
       address: address,
@@ -100,26 +100,7 @@ const NewCustomer = () => {
         <div className="wrapper">
           <div className="title">Add New Customer</div>
           <div className="wrapper-cols">
-            <div className="wrapper-cols-1">
-              {/* <div className="image">
-                <div className="icon">
-                  <ModeEditOutlinedIcon className="edit-icon" />
-                  <input
-                    type="file"
-                    name="file"
-                    id="file"
-                    style={{ cursor: "pointer" }}
-                    // value={image}
-                    onChange={(e) => setFile(e.target.files[0])}
-                  />
-                </div>
-                <img
-                  src={file ? URL.createObjectURL(file) : noImage}
-                  alt=""
-                  className="user-img"
-                />
-              </div> */}
-            </div>
+            <div className="wrapper-cols-1"></div>
             <div className="wrapper-cols-2">
               <p className="fullName">Full name</p>
               <input

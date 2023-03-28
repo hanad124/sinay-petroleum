@@ -1,12 +1,7 @@
-import "./editSupplier.scss";
-import noImage from "../../assets/no-pictures.png";
+import "./editCustomer.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
-import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
-import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import SupplierContext from "../../context/SupplierContext";
-
+import CustomerContext from "../../context/CustomerContext";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -19,9 +14,11 @@ import {
 } from "firebase/firestore";
 import { db, storage } from "../../firebase";
 
-const EditEmployee = () => {
-  const { supplierId, SetSupplierId } = useContext(SupplierContext);
+const customerID = JSON.parse(localStorage.getItem("customerID"));
+
+const EditCustomer = () => {
   const navigate = useNavigate();
+  const { customerId, SetCustomerId } = useContext(CustomerContext);
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
@@ -50,7 +47,7 @@ const EditEmployee = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "suppliers", supplierId);
+      const docRef = doc(db, "customers", customerId);
       const docSnap = await getDoc(docRef);
 
       const userfullName = docSnap.data().fullName;
@@ -68,7 +65,7 @@ const EditEmployee = () => {
 
   const handleUpdate = async () => {
     try {
-      await setDoc(doc(db, "customers", supplierId), {
+      await setDoc(doc(db, "customers", customerID), {
         fullName: fullName,
         phone: phone,
         address: address,
@@ -84,12 +81,12 @@ const EditEmployee = () => {
   };
 
   return (
-    <div className="editEmployee">
+    <div className="editCustomers">
       <Sidebar />
-      <div className="editEmployeeContainer">
+      <div className="editCustomersContainer">
         <Navbar />
         <div className="wrapper">
-          <div className="title">Update Employee</div>
+          <div className="title">Update Customer</div>
           <div className="wrapper-cols">
             <div className="wrapper-cols-1"></div>
             <div className="wrapper-cols-2">
@@ -121,10 +118,7 @@ const EditEmployee = () => {
               />
             </div>
           </div>
-          <button
-            className="btn-save"
-            onClick={handleUpdate}
-          >
+          <button className="btn-save" onClick={handleUpdate}>
             Update
           </button>
         </div>
@@ -133,4 +127,4 @@ const EditEmployee = () => {
   );
 };
 
-export default EditEmployee;
+export default EditCustomer;
