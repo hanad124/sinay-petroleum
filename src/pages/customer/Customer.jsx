@@ -4,7 +4,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 
 import { DataGrid } from "@mui/x-data-grid";
-import CustomerContext from "../../context/CustomerContext"
+import CustomerContext from "../../context/CustomerContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
@@ -140,7 +140,29 @@ const Customer = () => {
       <Sidebar />
       <div className="customerContainer">
         <Navbar />
-        <div className="">CUSTOMER</div>
+        <div className="datatable">
+          <div className="datatableTitle">
+            Customers
+            <div
+              className="link"
+              onClick={() => {
+                navigate("/customer/new-customer");
+                // localStorage.removeItem("userID");
+                setEditUser("");
+              }}
+            >
+              Add New
+            </div>
+          </div>
+          <DataGrid
+            className="datagrid"
+            rows={data}
+            columns={userColumns.concat(actionColumn)}
+            pageSize={9}
+            rowsPerPageOptions={[9]}
+            // checkboxSelection
+          />
+        </div>
       </div>
     </div>
   );
