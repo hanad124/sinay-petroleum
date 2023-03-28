@@ -155,7 +155,7 @@ const Sales = () => {
       },
     },
   ];
-  
+
   return (
     <div className="purchase">
       <Sidebar />
