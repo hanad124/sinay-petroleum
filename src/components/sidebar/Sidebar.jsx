@@ -107,10 +107,12 @@ const Sidebar = () => {
           ) : ( */}
           {/* )} */}
         </li>
-        <li className={`sub_rep ${showReports ? "show-sub_rep" : ""}`}>
-          <SummarizeOutlinedIcon className="icon" />
-          <span>Purchase report</span>
-        </li>
+        <Link to="/purchaseReport">
+          <li className={`sub_rep ${showReports ? "show-sub_rep" : ""}`}>
+            <SummarizeOutlinedIcon className="icon" />
+            <span>Purchase report</span>
+          </li>
+        </Link>
         <li className={`sub_rep ${showReports ? "show-sub_rep" : ""}`}>
           <SummarizeOutlinedIcon className="icon" />
           <span>Sales report</span>

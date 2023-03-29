@@ -8,7 +8,27 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
   const [clicked, setClicked] = useState(false);
+  const [clockTime, setClockTime] = useState("");
   const navigate = useNavigate();
+
+  //CLOCK DATE
+  const startTime = () => {
+    const today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    setClockTime(h + ":" + m + ":" + s);
+  };
+  setTimeout(startTime, 1000);
+
+  function checkTime(i) {
+    if (i < 10) {
+      i = "0" + i;
+    } // add zero in front of numbers < 10
+    return i;
+  }
 
   const showaccount = () => {
     if (clicked) {
@@ -40,6 +60,7 @@ const Navbar = () => {
           <input type="text" placeholder="search..." />
           <SearchOutlinedIcon className="icon" />
         </div>
+        <div className="time">{clockTime}</div>
         <div className="items">
           <div className="item">
             <div className="account">

@@ -23,6 +23,8 @@ import NewCustomer from "./pages/newCustomer/NewCustomer";
 import NewSales from "./pages/newSales/NewSales"
 import EditPurchase from "./pages/editPurchase/EditPurchase";
 import EditCustomer from "./pages/editCustomer/EditCustomer";
+import PurchaseReport from "./pages/reports/purchaseReport/PurchaseReport"
+import ReportView from "./pages/reports/purReportView/PurRepView"
 
 import EditUserContext from "./context/EditUserContext";
 import EditEmployeeContext from "./context/EditEmployeeContext";
@@ -244,6 +246,22 @@ const App = () => {
                           element={
                             <RequireAuth>
                               <SingleUser />
+                            </RequireAuth>
+                          }
+                        />
+                        <Route
+                          path="/purchaseReport"
+                          element={
+                            <RequireAuth>
+                              <PurchaseReport />
+                            </RequireAuth>
+                          }
+                        />
+                        <Route
+                          path="/reportview"
+                          element={
+                            <RequireAuth>
+                              <ReportView />
                             </RequireAuth>
                           }
                         />

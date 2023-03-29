@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: #10316b;
+  background-color: #303665;
   flex: 1;
   border-right: 0.2px solid rgb(227, 225, 225);
   min-height: 100vh;
@@ -65,7 +65,7 @@
       }
 
       &:hover:not(:nth-child(9)) {
-        background-color: #2352a6;
+        background-color: #1d4790;
         color: #fff;
       }
 
