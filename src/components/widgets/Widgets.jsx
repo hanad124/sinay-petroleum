@@ -5,18 +5,121 @@ import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStore
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
+import { db } from "../../firebase";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
+import { useState, useEffect } from "react";
 
 const Widget = ({ type }) => {
+  const [sales, setSales] = useState(null);
+  const [employees, setEmployees] = useState(null);
+  const [customers, setCustomers] = useState(null);
+  const [purchase, setPurchase] = useState(null);
+
   // temporary
-  let amount = 100;
-  const diff = 20;
   let data;
+
+  //GET EMPLOYEES LENGTH
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "employees"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setEmployees(list.length);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      unsub();
+    };
+  }, []);
+
+  //GET CUSTOMERS LENGTH
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "customers"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setCustomers(list.length);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      unsub();
+    };
+  }, []);
+
+  //GET SALES LENGTH
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "sales"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setSales(list.length);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      unsub();
+    };
+  }, []);
+
+  //GET PURCHASE LENGTH
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "purchase"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          // list = { id: doc.id, ...doc.data() };
+          let sum = 0;
+          list.push(doc.data().totalPrice);
+          for (let i = 0; i <= list.length; i++) {
+            sum += list[i];
+            console.log(list[i]);
+          }
+          // console.log(sum);
+        });
+        setPurchase(list.length);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      unsub();
+    };
+  }, []);
 
   switch (type) {
     case "employees":
       data = {
         title: "EMPLOYEES",
-        amount : 34,
+        amount: employees,
         isMoney: false,
         link: "see all employees",
         icon: (
@@ -34,7 +137,7 @@ const Widget = ({ type }) => {
     case "customers":
       data = {
         title: "CUSTOMERS",
-        amount : 328,
+        amount: customers,
         isMoney: false,
         link: "see all customers",
         icon: (
@@ -52,7 +155,7 @@ const Widget = ({ type }) => {
     case "purchase":
       data = {
         title: "PURCHASE",
-        amount : 1.2+"k",
+        amount: purchase,
         isMoney: true,
         link: "see details",
         icon: (
@@ -70,7 +173,7 @@ const Widget = ({ type }) => {
     case "sales":
       data = {
         title: "SALES",
-        amount : 3.6+"k",
+        amount: sales,
         isMoney: true,
         link: "see all net sales",
         icon: (
