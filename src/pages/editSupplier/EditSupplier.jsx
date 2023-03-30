@@ -66,8 +66,6 @@ const EditEmployee = () => {
     fetchData();
   }, []);
 
-
-
   const handleUpdate = async () => {
     try {
       await setDoc(doc(db, "suppliers", supplierId), {

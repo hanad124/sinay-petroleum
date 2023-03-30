@@ -73,9 +73,16 @@ const Widget = ({ type }) => {
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
+          // list = { id: doc.id, ...doc.data() };
+          let sum = 0;
+          list.push(doc.data().totalPrice);
+          for (let i = 0; i <= list.length; i++) {
+            sum += list[i];
+            {
+              sum ? setSales(sum) : "";
+            }
+          }
         });
-        setSales(list.length);
       },
       (error) => {
         console.log(error);
@@ -99,11 +106,11 @@ const Widget = ({ type }) => {
           list.push(doc.data().totalPrice);
           for (let i = 0; i <= list.length; i++) {
             sum += list[i];
-            console.log(list[i]);
+            {
+              sum ? setPurchase(sum) : "";
+            }
           }
-          // console.log(sum);
         });
-        setPurchase(list.length);
       },
       (error) => {
         console.log(error);
