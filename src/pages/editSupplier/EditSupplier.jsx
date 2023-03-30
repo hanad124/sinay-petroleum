@@ -66,9 +66,11 @@ const EditEmployee = () => {
     fetchData();
   }, []);
 
+
+
   const handleUpdate = async () => {
     try {
-      await setDoc(doc(db, "customers", supplierId), {
+      await setDoc(doc(db, "suppliers", supplierId), {
         fullName: fullName,
         phone: phone,
         address: address,
@@ -121,10 +123,7 @@ const EditEmployee = () => {
               />
             </div>
           </div>
-          <button
-            className="btn-save"
-            onClick={handleUpdate}
-          >
+          <button className="btn-save" onClick={handleUpdate}>
             Update
           </button>
         </div>
