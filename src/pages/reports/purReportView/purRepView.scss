@@ -1,117 +1,150 @@
 .purchaseReport {
-    display: flex;
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  .purRepViewContainer {
+    // flex: 6;
+    // margin-left: 182px;
     width: 100%;
-    position: relative;
-  
-    .purchaseReportContainer {
-      flex: 6;
-      margin-left: 182px;
-  
-      .datatable {
-        position: relative;
-        height: 100vh;
-        padding: 20px;
-  
-        .datagrid {
-          height: 100%;
-          overflow-x: hidden;
-        }
-  
-        .datatableTitle {
-          width: 100%;
-          font-size: 24px;
-          color: gray;
-          margin-bottom: 10px;
+
+    .datatable {
+      position: relative;
+      height: 100%;
+      padding: 20px;
+      width: 100% !important;
+
+      .datagrid {
+        height: 100%;
+        overflow-x: hidden;
+        width: 100% !important;
+      }
+
+      .reportTitle {
+        width: 100%;
+        font-size: 24px;
+        color: gray;
+        margin-bottom: 10px;
+        display: block;
+
+        .company {
           display: flex;
           align-items: center;
-          justify-content: space-between;
-  
-          .link {
-            text-decoration: none;
-            color: #10316b;
-            font-size: 16px;
-            font-weight: 400;
-            border: 1px solid #10316b;
-            padding: 5px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            gap: .4rem;
-            cursor: pointer;
-            transition: .3s ease-in-out;
+          justify-content: center;
+          color: #10316b;
+          font-weight: 600;
+          gap: 1rem;
 
-            .print-icon {
-              font-size: 1.3rem;
-            }
-
-            &:hover {
-              background-color: #10316b;
-              color: #fff;
-            }
+          img {
+            width: 1.5rem;
           }
         }
-  
-        .cellWithImg {
-          display: flex;
-          align-items: center;
-  
-          .cellImg {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 20px;
+
+        .report_type {
+          text-align: center;
+          margin-top: 1rem;
+          color: #10316bbd;
+        }
+
+        .report_date {
+          font-size: 1rem;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+          width: 13.4rem;
+          border-bottom: 1.5px solid gray;
+
+          span {
+            font-weight: 600;
+            color: #10316bbd;
+            margin-left: 0.5rem;
           }
         }
-  
-        .cellWithStatus {
+
+        .link {
+          text-decoration: none;
+          color: #10316b;
+          font-size: 16px;
+          font-weight: 400;
+          border: 1px solid #10316b;
           padding: 5px;
           border-radius: 5px;
-  
-          &.active {
-            background-color: rgba(0, 128, 0, 0.05);
-            color: green;
-          }
-          &.pending {
-            background-color: rgba(255, 217, 0, 0.05);
-            color: goldenrod;
-          }
-          &.passive {
-            background-color: rgba(255, 0, 0, 0.05);
-            color: crimson;
-          }
-        }
-  
-        .cellAction {
           display: flex;
           align-items: center;
-          gap: 15px;
-  
-          .viewButton {
-            padding: 2px 5px;
-            border-radius: 5px;
-            color: darkblue;
-            border: 1px dotted rgba(0, 0, 139, 0.596);
-            cursor: pointer;
+          gap: 0.4rem;
+          cursor: pointer;
+          transition: 0.3s ease-in-out;
+
+          .print-icon {
+            font-size: 1.3rem;
           }
-  
-          .deleteButton {
-            padding: 2px 5px;
-            border-radius: 5px;
-            color: crimson;
-            border: 1px dotted rgba(220, 20, 60, 0.6);
-            cursor: pointer;
+
+          &:hover {
+            background-color: #10316b;
+            color: #fff;
           }
-  
-          .editButton {
-            padding: 2px 5px;
-            border-radius: 5px;
-            color: rgb(16, 141, 16);
-            border: 1px dotted rgb(16, 141, 16);
-            cursor: pointer;
-          }
+        }
+      }
+
+      .cellWithImg {
+        display: flex;
+        align-items: center;
+
+        .cellImg {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 20px;
+        }
+      }
+
+      .cellWithStatus {
+        padding: 5px;
+        border-radius: 5px;
+
+        &.active {
+          background-color: rgba(0, 128, 0, 0.05);
+          color: green;
+        }
+        &.pending {
+          background-color: rgba(255, 217, 0, 0.05);
+          color: goldenrod;
+        }
+        &.passive {
+          background-color: rgba(255, 0, 0, 0.05);
+          color: crimson;
+        }
+      }
+
+      .cellAction {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .viewButton {
+          padding: 2px 5px;
+          border-radius: 5px;
+          color: darkblue;
+          border: 1px dotted rgba(0, 0, 139, 0.596);
+          cursor: pointer;
+        }
+
+        .deleteButton {
+          padding: 2px 5px;
+          border-radius: 5px;
+          color: crimson;
+          border: 1px dotted rgba(220, 20, 60, 0.6);
+          cursor: pointer;
+        }
+
+        .editButton {
+          padding: 2px 5px;
+          border-radius: 5px;
+          color: rgb(16, 141, 16);
+          border: 1px dotted rgb(16, 141, 16);
+          cursor: pointer;
         }
       }
     }
   }
-  
+}

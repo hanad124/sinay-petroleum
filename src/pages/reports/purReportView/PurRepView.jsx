@@ -1,12 +1,12 @@
-import React from "react";
 import "./purRepView.scss";
+import React from "react";
 import logo from "../../../assets/logo.png";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Navbar from "../../../components/navbar/Navbar";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../firebase";
 
@@ -14,7 +14,7 @@ const userColumns = [
   // { field: "id", headerName: "ID", width: 70 },
   {
     field: "suppName",
-    headerName: "Name",
+    headerName: "Supplier Name",
     width: 230,
   },
 
@@ -72,8 +72,9 @@ const userColumns = [
   },
 ];
 
-function PurRepView() {
+const PurRepView = React.forwardRef((props, ref) => {
   const navigate = useNavigate();
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -96,15 +97,39 @@ function PurRepView() {
     };
   }, []);
 
+  
+  const date = new Date();
+
+  const dayDate = date.getDate();
+  const monthDate = date.getMonth() + 1;
+  const yearDate = date.getFullYear();
+
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   return (
-    <div className="purchaseReport">
-      <Sidebar />
-      <div className="purchaseReportContainer">
-        <Navbar />
+    <div className="purchaseReport" ref={ref}>
+      <div className="purRepViewContainer">
         <div className="datatable">
-          <div className="datatableTitle">
-            Purchase Report
-            <img src={logo} alt="" />
+          <div className="reportTitle">
+            <div className="company">
+              <img src={logo} alt="" />
+              SINAY PETROLEUM
+            </div>
+            <p className="report_type">Purchase Report</p>
+            <p className="report_date">Report Date: <span>{ dayDate + " - " + months[monthDate] + " - " + yearDate}</span> </p>
           </div>
           <DataGrid
             className="datagrid"
@@ -118,6 +143,6 @@ function PurRepView() {
       </div>
     </div>
   );
-}
+});
 
 export default PurRepView;

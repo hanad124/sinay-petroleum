@@ -73,7 +73,6 @@ const Widget = ({ type }) => {
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
-          // list = { id: doc.id, ...doc.data() };
           let sum = 0;
           list.push(doc.data().totalPrice);
           for (let i = 0; i <= list.length; i++) {

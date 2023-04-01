@@ -2,10 +2,14 @@ import "./purchaseReport.scss";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Navbar from "../../../components/navbar/Navbar";
+import PurRepView from "../purReportView/PurRepView";
+import { useReactToPrint } from "react-to-print";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
+import * as React from "react";
+
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../../firebase";
 
@@ -75,6 +79,11 @@ const Purchase = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   useEffect(() => {
     const unsub = onSnapshot(
       collection(db, "purchase"),
@@ -100,15 +109,13 @@ const Purchase = () => {
       <Sidebar />
       <div className="purchaseReportContainer">
         <Navbar />
+        <div className="" style={{ display: "none" }}>
+          <PurRepView ref={componentRef} />
+        </div>
         <div className="datatable">
           <div className="datatableTitle">
             Purchase Report
-            <div
-              className="link"
-              onClick={() => {
-                navigate("/reportview");
-              }}
-            >
+            <div className="link" onClick={handlePrint}>
               <LocalPrintshopOutlinedIcon className="print-icon" />
               Print Report
             </div>

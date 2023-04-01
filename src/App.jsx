@@ -57,9 +57,7 @@ const App = () => {
             <SupplierContext.Provider value={{ supplierId, SetSupplierId }}>
               <FuelContext.Provider value={{ fuelId, SetFuelId }}>
                 <PurchaseContext.Provider value={{ purchaseId, SetPurchaseId }}>
-                  <CustomerContext.Provider
-                    value={{ customerId, SetCustomerId }}
-                  >
+                  <CustomerContext.Provider value={{ customerId, SetCustomerId }}>
                     <Routes>
                       <Route path="/">
                         <Route path="login" element={<Login />} />

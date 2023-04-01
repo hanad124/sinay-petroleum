@@ -22,7 +22,7 @@
           font-size: 24px;
           color: gray;
           margin-bottom: 10px;
-          display: flex;
+          display: flex !important;
           align-items: center;
           justify-content: space-between;
   
@@ -39,6 +39,7 @@
             gap: .4rem;
             cursor: pointer;
             transition: .3s ease-in-out;
+            // width: 20rem;
 
             .print-icon {
               font-size: 1.3rem;
