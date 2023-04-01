@@ -15,7 +15,7 @@ const userColumns = [
   {
     field: "suppName",
     headerName: "Supplier Name",
-    width: 230,
+    width: 190,
   },
 
   {
@@ -23,11 +23,11 @@ const userColumns = [
     headerName: "Phone",
     width: 130,
   },
-  // {
-  //   field: "suppEmail",
-  //   headerName: "Email",
-  //   width: 150,
-  // },
+  {
+    field: "suppEmail",
+    headerName: "Email",
+    width: 150,
+  },
   {
     field: "fuelType",
     headerName: "Fuel",
@@ -132,7 +132,7 @@ const PurRepView = React.forwardRef((props, ref) => {
             <p className="report_date">Report Date: <span>{ dayDate + " - " + months[monthDate] + " - " + yearDate}</span> </p>
           </div>
           <DataGrid
-            className="datagrid"
+            className="reportDatagrid"
             rows={data}
             columns={userColumns}
             pageSize={5}
