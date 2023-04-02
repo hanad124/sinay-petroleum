@@ -3,6 +3,7 @@ import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlin
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Navbar from "../../../components/navbar/Navbar";
 import PurRepView from "../purReportView/PurRepView";
+import List from "../../../components/table/Table";
 import { useReactToPrint } from "react-to-print";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
@@ -109,7 +110,7 @@ const Purchase = () => {
       <Sidebar />
       <div className="purchaseReportContainer">
         <Navbar />
-        <div className="" style={{ display: "none" }}>
+        <div className="print-component">
           <PurRepView ref={componentRef} />
         </div>
         <div className="datatable">

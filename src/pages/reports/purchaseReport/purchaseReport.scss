@@ -6,11 +6,19 @@
     .purchaseReportContainer {
       flex: 6;
       margin-left: 182px;
+
+      .print-component {
+        position: absolute;
+        z-index: -10;
+        opacity: 0;
+      }
   
       .datatable {
         position: relative;
         height: 100vh;
         padding: 20px;
+        z-index: 10;
+        top: 0 !important;
   
         .datagrid {
           height: 100%;

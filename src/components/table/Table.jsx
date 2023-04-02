@@ -1,4 +1,5 @@
 import "./table.scss";
+import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,7 +12,7 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-function List() {
+const List = React.forwardRef((props, ref) => {
   const rows = [
     {
       id: 1143155,
@@ -65,7 +66,7 @@ function List() {
     },
   ];
   return (
-    <TableContainer component={Paper} className="table">
+    <TableContainer component={Paper} className="table" ref={ref}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -101,6 +102,6 @@ function List() {
       </Table>
     </TableContainer>
   );
-}
+});
 
 export default List;

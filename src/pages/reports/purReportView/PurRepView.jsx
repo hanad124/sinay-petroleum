@@ -15,53 +15,48 @@ const userColumns = [
   {
     field: "suppName",
     headerName: "Supplier Name",
-    width: 190,
+    width: 150,
   },
 
   {
     field: "suppPhone",
     headerName: "Phone",
-    width: 130,
-  },
-  {
-    field: "suppEmail",
-    headerName: "Email",
-    width: 150,
+    width: 100,
   },
   {
     field: "fuelType",
     headerName: "Fuel",
-    width: 100,
+    width: 70,
   },
   {
     field: "fuelTank",
     headerName: "Tank No.",
-    width: 70,
+    width: 60,
   },
   {
     field: "litter",
     headerName: "Litters",
-    width: 60,
+    width: 50,
   },
   {
     field: "pricePerLitter",
     headerName: "Price/Litter",
-    width: 90,
+    width: 40,
   },
   {
     field: "totalPrice",
     headerName: "Total",
-    width: 80,
+    width: 70,
   },
   {
     field: "perchaseDate",
     headerName: "Date",
-    width: 120,
+    width: 110,
   },
   {
     field: "status",
     headerName: "Status",
-    width: 120,
+    width: 100,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.status}`}>
@@ -135,7 +130,7 @@ const PurRepView = React.forwardRef((props, ref) => {
             className="reportDatagrid"
             rows={data}
             columns={userColumns}
-            pageSize={5}
+            pageSize={23}
             rowsPerPageOptions={[9]}
             // checkboxSelection
           />
