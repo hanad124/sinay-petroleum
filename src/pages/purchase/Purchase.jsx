@@ -13,8 +13,6 @@ import {
   doc,
   deleteDoc,
   onSnapshot,
-  query,
-  where,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -90,8 +88,10 @@ const Purchase = () => {
       collection(db, "purchase"),
       (snapShot) => {
         let list = [];
-        snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
+        snapShot.docs.map((doc) => {
+          // console.log(doc.data());
+          list.push({ id: doc.id, status: doc.data().status, ...doc.data() });
+         
         });
         setData(list);
       },
@@ -155,6 +155,7 @@ const Purchase = () => {
       },
     },
   ];
+
   return (
     <div className="purchase">
       <Sidebar />

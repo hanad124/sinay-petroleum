@@ -25,6 +25,7 @@ import EditPurchase from "./pages/editPurchase/EditPurchase";
 import EditCustomer from "./pages/editCustomer/EditCustomer";
 import PurchaseReport from "./pages/reports/purchaseReport/PurchaseReport"
 import ReportView from "./pages/reports/purReportView/PurRepView"
+import EditSales from "./pages/editSales/EditSales"
 
 import EditUserContext from "./context/EditUserContext";
 import EditEmployeeContext from "./context/EditEmployeeContext";
@@ -212,6 +213,14 @@ const App = () => {
                           element={
                             <RequireAuth>
                               <NewSales />
+                            </RequireAuth>
+                          }
+                        />
+                        <Route
+                          path="/sales/edit-sales"
+                          element={
+                            <RequireAuth>
+                              <EditSales />
                             </RequireAuth>
                           }
                         />
