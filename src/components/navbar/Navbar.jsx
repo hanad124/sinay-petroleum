@@ -44,6 +44,7 @@ const Navbar = () => {
   const accountID = JSON.parse(localStorage.getItem("accountID"));
 
   const AccountClick = () => {
+    localStorage.removeItem("userID");
     localStorage.setItem("userID", JSON.stringify(accountID));
     navigate("/users/single-user");
   };
@@ -74,10 +75,16 @@ const Navbar = () => {
               onClick={showaccount}
             />
             <div className={`account_popup ${clicked ? "show" : ""}`}>
-              <div className="userAccount" onClick={AccountClick}>
-                <AccountCircleOutlinedIcon className=" icon sitting-icon" />
-                <p>Account</p>
-              </div>
+              <Link to="/users/single-user">
+                <div
+                  className="userAccount"
+                  style={{ color: "#555555" }}
+                  onClick={AccountClick}
+                >
+                  <AccountCircleOutlinedIcon className=" icon sitting-icon" />
+                  <p>Account</p>
+                </div>
+              </Link>
               <Link to="/login">
                 <div className="logout" onClick={handleLogout}>
                   <LogoutOutlinedIcon className="icon logout-icon" />

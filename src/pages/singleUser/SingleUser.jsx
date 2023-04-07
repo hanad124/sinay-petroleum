@@ -58,9 +58,7 @@ const NewUser = () => {
   };
 
   if (loading) {
-    return (
-      <img src={peroloader} alt="preloader" className="preloader" />
-    );
+    return <img src={peroloader} alt="preloader" className="preloader" />;
   }
   return (
     <div className="newUser">
