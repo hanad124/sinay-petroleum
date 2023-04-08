@@ -85,8 +85,6 @@ const Chart = () => {
     };
   }, []);
 
-  console.log(data);
-
   return (
     <div className="chart">
       <div className="title">customers transections</div>
