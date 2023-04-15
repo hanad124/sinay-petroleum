@@ -1,7 +1,7 @@
 import "./sales.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import PurchaseContext from "../../context/PurchaseContext";
+import SalesContext from "../../context/SalesContext";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -66,24 +66,25 @@ const userColumns = [
     headerName: "Date",
     width: 120,
   },
-  {
-    field: "status",
-    headerName: "Status",
-    width: 160,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
-        </div>
-      );
-    },
-  },
+  // {
+  //   field: "status",
+  //   headerName: "Status",
+  //   width: 160,
+  //   renderCell: (params) => {
+  //     return (
+  //       <div className={`cellWithStatus ${params.row.status}`}>
+  //         {params.row.status}
+  //       </div>
+  //     );
+  //   },
+  // },
 ];
 
 const Sales = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const { purchaseId, SetPurchaseId } = useContext(PurchaseContext);
+  const [salesStatus, setSalesStatus] = useState([]);
+  // const { salesId, SetSalesId } = useContext(SalesContext);
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -105,13 +106,32 @@ const Sales = () => {
     };
   }, []);
 
+  //FETCH SELLS STATUS
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "sales"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push(doc.data().status);
+        });
+        setSalesStatus(list);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    return () => {
+      unsub();
+    };
+  }, []);
+
   const clickUser = (id) => {
     localStorage.setItem("salesID", JSON.stringify(id));
   };
 
   const editUserBtn = (id) => {
     localStorage.setItem("salesID", JSON.stringify(id));
-    // SetPurchaseId(id);
   };
 
   const handleDelete = async (id) => {
@@ -156,6 +176,21 @@ const Sales = () => {
     },
   ];
 
+  const statusColumn = [
+    {
+      field: "status",
+      headerName: "Status",
+      width: 100,
+      renderCell: () => {
+        return (
+          <div className="cellAction">
+            <div className={`status ${salesStatus}`}>{salesStatus}</div>;
+          </div>
+        );
+      },
+    },
+  ];
+
   return (
     <div className="purchase">
       <Sidebar />
@@ -176,7 +211,7 @@ const Sales = () => {
           <DataGrid
             className="datagrid"
             rows={data}
-            columns={userColumns.concat(actionColumn)}
+            columns={userColumns.concat(actionColumn).concat(statusColumn)}
             pageSize={9}
             rowsPerPageOptions={[9]}
             // checkboxSelection

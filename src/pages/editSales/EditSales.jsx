@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { db, storage } from "../../firebase";
 
-const NewSales = () => {
+const UpdateSales = () => {
   const navigate = useNavigate();
   const [fuelData, setFuelData] = useState([]);
   const [data, setData] = useState([]);
@@ -73,6 +73,19 @@ const NewSales = () => {
     "Nov",
     "Dec",
   ];
+
+  // FETCH SPECIFIC CUSTOMER
+  useEffect(() => {
+    const fetchData = async () => {
+      const docRef = doc(db, "customers", customerID);
+      const docSnap = await getDoc(docRef);
+
+      const cusname = docSnap.data().name;
+
+      setcustomerName(cusname);
+    };
+    fetchData();
+  }, [customerID]);
 
   // FETCH CUSTOMER NAME
   useEffect(() => {
@@ -144,7 +157,7 @@ const NewSales = () => {
     fetchData();
   }, [fuelID]);
 
-  const handleAdd = async () => {
+  const handleUpdate = async () => {
     await addDoc(collection(db, "sales"), {
       customerName: customerName,
       customerPhone: customerPhone,
@@ -169,13 +182,14 @@ const NewSales = () => {
       <div className="newSalesContainer">
         <Navbar />
         <div className="wrapper">
-          <div className="title">Add New Customer</div>
+          <div className="title">Update Sales</div>
           <div className="wrapper-cols">
             <div className="wrapper-cols-2">
               <p className="fullName">Customer Name</p>
               <select
                 name="supp-name"
                 className="supp_name"
+                value={customerName}
                 onChange={(e) => {
                   customerData.filter((el) => {
                     if (el.id == e.target.value) {
@@ -287,7 +301,7 @@ const NewSales = () => {
               </div>
             </div>
           </div>
-          <button className="btn-save" onClick={handleAdd}>
+          <button className="btn-save" onClick={handleUpdate}>
             Save
           </button>
         </div>
@@ -296,4 +310,4 @@ const NewSales = () => {
   );
 };
 
-export default NewSales;
+export default UpdateSales;
