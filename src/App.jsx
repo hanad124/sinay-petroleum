@@ -110,6 +110,8 @@ const App = () => {
                             <RequireAuth>
                               <Supplier />
                             </RequireAuth>
+
+                            
                           }
                         />
                         <Route
