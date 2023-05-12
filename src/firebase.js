@@ -3,8 +3,10 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+const FIREBASE_API_KEY = import.meta.env.VITE_FIREBASE_API_KEY
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBtLQI9Ueojqx9dnFfo0SUrD4NR4qgdcwY",
+  apiKey: FIREBASE_API_KEY,
   authDomain: "petroleum-system.firebaseapp.com",
   projectId: "petroleum-system",
   storageBucket: "petroleum-system.appspot.com",

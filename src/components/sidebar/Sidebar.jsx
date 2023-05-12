@@ -18,7 +18,15 @@ import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
   const [showReports, setShowReports] = useState(false);
   const [access, setAccess] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  // active sidebar hooks
+  const [dashboardActive, setActiveDashboard] = useState(false);
+  const [employeeActive, setActiveEmployee] = useState(false);
+  const [supplierActive, setActiveSupplier] = useState(false);
+  const [fuelActive, setActiveFuel] = useState(false);
+  const [PurchaseActive, setActivePurchase] = useState(false);
+  const [customerActive, setActiveCustomer] = useState(false);
+  const [salesActive, setActiveSales] = useState(false);
+  const [usersActive, setActiveUsers] = useState(false);
 
   const roll = JSON.parse(localStorage.getItem("roll"));
 
@@ -30,9 +38,9 @@ const Sidebar = () => {
     }
   }, []);
 
-  const sideBarClick = () => {
-    setClicked(true);
-  };
+useEffect(() => {
+  setActiveDashboard(true);
+},[])
 
   return (
     <div className="sidebar">
@@ -41,54 +49,113 @@ const Sidebar = () => {
       </Link>
       <div className="seprator"></div>
       <ul className="list">
-        <Link to="/">
-          <li onClick={sideBarClick} className={`${clicked ? "active" : ""}`}>
+          <li className={`${dashboardActive ? "active" : ""}`} onClick={() => {
+            setActiveDashboard(true);
+            setActiveEmployee(false);
+            setActiveSupplier(false);
+            setActiveFuel(false);
+            setActivePurchase(false);
+            setActiveCustomer(false);
+            setActiveSales(false);
+            setActiveUsers(false);
+          }}> 
+            <Link to="/">
             <DashboardIcon className="icon" />
             <span>Dashaord</span>
+          </Link>
           </li>
-        </Link>
-        <Link to="/employees" className={`${access ? "" : "hideItem"}`}>
-          <li onClick={sideBarClick} className={`${clicked ? "active" : ""}`}>
+          <li className={`${employeeActive ? "active" : ""}`} onClick={() => {
+            setActiveDashboard(false);
+            setActiveEmployee(true);
+            setActiveSupplier(false);
+            setActiveFuel(false);
+            setActivePurchase(false);
+            setActiveCustomer(false);
+            setActiveSales(false);
+            setActiveUsers(false);
+          }}>
+            <Link to="/employees" className={`${access ? "" : "hideItem"}`}>
             <PersonOutlineOutlinedIcon className="icon" />
-            <span>Employee</span>
+            <span>Employee</span> </Link>
           </li>
-        </Link>
-        <Link to="/supplier">
-          <li onClick={sideBarClick}>
+          <li className={`${supplierActive ? "active" : ""}`} onClick={() => {
+            setActiveDashboard(false);
+            setActiveEmployee(false);
+            setActiveSupplier(true);
+            setActiveFuel(false);
+            setActivePurchase(false);
+            setActiveCustomer(false);
+            setActiveSales(false);
+            setActiveUsers(false);
+          }}><Link to="/supplier">
             <PersonPinOutlinedIcon className="icon" />
-            <span>Supplier</span>
+            <span>Supplier</span></Link>
           </li>
-        </Link>
-        <Link to="/fuel">
-          <li onClick={sideBarClick}>
+          <li className={`${fuelActive ? "active" : ""}`} onClick={() => {
+            setActiveDashboard(false);
+            setActiveEmployee(false);
+            setActiveSupplier(false);
+            setActiveFuel(true);
+            setActivePurchase(false);
+            setActiveCustomer(false);
+            setActiveSales(false);
+            setActiveUsers(false);
+          }}><Link to="/fuel">
             <LocalGasStationOutlinedIcon className="icon" />
-            <span>Fuel</span>
+            <span>Fuel</span></Link>
           </li>
-        </Link>
-        <Link to="/purchase">
-          <li onClick={sideBarClick}>
+          <li className={`${PurchaseActive ? "active" : ""}`} onClick={() => {
+            setActiveDashboard(false);
+            setActiveEmployee(false);
+            setActiveSupplier(false);
+            setActiveFuel(false);
+            setActivePurchase(true);
+            setActiveCustomer(false);
+            setActiveSales(false);
+            setActiveUsers(false);
+          }}><Link to="/purchase">
             <ShoppingBasketOutlinedIcon className="icon" />
-            <span>Purchase</span>
+            <span>Purchase</span> </Link>
           </li>
-        </Link>
-        <Link to="/customer">
-          <li onClick={sideBarClick}>
+          <li  className={`${customerActive ? "active" : ""}`} onClick={() => {
+            setActiveDashboard(false);
+            setActiveEmployee(false);
+            setActiveSupplier(false);
+            setActiveFuel(false);
+            setActivePurchase(false);
+            setActiveCustomer(true);
+            setActiveSales(false);
+            setActiveUsers(false);
+          }}> <Link to="/customer">
             <SupportAgentOutlinedIcon className="icon" />
-            <span>Customer</span>
+            <span>Customer</span></Link>
           </li>
-        </Link>
-        <Link to="/sales">
-          <li onClick={sideBarClick}>
+          <li  className={`${salesActive ? "active" : ""}`} onClick={() => {
+            setActiveDashboard(false);
+            setActiveEmployee(false);
+            setActiveSupplier(false);
+            setActiveFuel(false);
+            setActivePurchase(false);
+            setActiveCustomer(false);
+            setActiveSales(true);
+            setActiveUsers(false);
+          }}><Link to="/sales">
             <MonetizationOnOutlinedIcon className="icon" />
-            <span>Sales</span>
+            <span>Sales</span></Link>
           </li>
-        </Link>
-        <Link to="/users" className={`${access ? "" : "hideItem"}`}>
-          <li onClick={sideBarClick}>
+          <li  className={`${usersActive ? "active" : ""}`} onClick={() => {
+            setActiveDashboard(false);
+            setActiveEmployee(false);
+            setActiveSupplier(false);
+            setActiveFuel(false);
+            setActivePurchase(false);
+            setActiveCustomer(false);
+            setActiveSales(false);
+            setActiveUsers(true);
+          }}> <Link to="/users" className={`${access ? "" : "hideItem"}`}>
             <AccountCircleOutlinedIcon className="icon" />
-            <span>Users</span>
+            <span>Users</span></Link>
           </li>
-        </Link>
         <li
           className="reports"
           onClick={() => {
